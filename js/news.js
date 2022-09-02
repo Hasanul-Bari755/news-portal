@@ -42,11 +42,12 @@ const loadCatagoryDetails = async (id) =>{
 }
 
 const loadCatagoryDetailsDisplay = (datas) =>{
+      
       const numderOfNews = document.getElementById('numberOf-news');
       numderOfNews.innerHTML = `<p class="fw-bold fs-5">Number of news : ${datas.length}</p>`;
      const cardContainer = document.getElementById('card-container');
      cardContainer.innerHTML = "";
-     datas.forEach(data => {
+      datas.forEach(data => {
         //console.log(data)
         const {thumbnail_url,title,details,author,rating,_id} = data;
         const {img,name} = author;
@@ -61,7 +62,7 @@ const loadCatagoryDetailsDisplay = (datas) =>{
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title fw-bold">${title}</h5>
-          <p class="card-text">${details}</p>
+          <p class="card-text">${details.length > 500 ? details.slice(0,500)+'...' : details }</p>
           <div class="d-flex justify-content-between">
                <div class="d-flex">
                   <img src="${img}" class="rounded-circle img" alt="...">
