@@ -52,10 +52,10 @@ const loadCatagoryDetailsDisplay = (datas) =>{
                   <p class="ms-3">${name? name : 'No data available'}</p>
                </div>
                <div>
-                   <p class="fw-bold">${number}</p>
+                   <p class="fw-bold"><i class="fa-solid fa-eye me-2"></i>${number}</p>
                </div>
                <div>
-               <button onclick="modalLoadData('${_id}')" type="button" class="btn btn-info fw-bold">Details</button>
+               <button onclick="modalLoadData('${_id}')" type="button" class="btn btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
                </div>
             </div>
          </div>
@@ -73,6 +73,23 @@ const modalLoadData = async(id)=>{
 }
 const displayModalLoadData = (data) =>{
     console.log(data)
-    const {author} = data;
+    const {author,total_view,title} = data;
+    const {img,name} = author; 
+    const modalBody = document.getElementById('modal-body');
+    const modalTitle = document.getElementById('exampleModalLabel');
+    modalTitle.setAttribute('class','fw-bold text-center')
+    modalTitle.innerText = `${title}`
+    modalBody.innerHTML = `
+    <div class="card text-center" style="width: 18rem;">
+  <img src="${img}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Author name: ${name ? name : 'No data available'}</h5>
+    <p>Number of view: ${total_view? total_view : 'No data available'}</p>
+   
+  </div>
+</div>
+        
+    `;
+
 }
 loadAllCategory()
