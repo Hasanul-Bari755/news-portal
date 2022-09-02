@@ -28,10 +28,12 @@ const loadCatagoryDetails = async (id) =>{
 }
 
 const loadCatagoryDetailsDisplay = (datas) =>{
+      const numderOfNews = document.getElementById('numberOf-news');
+      numderOfNews.innerHTML = `<p class="fw-bold fs-5">Number of news : ${datas.length}</p>`;
      const cardContainer = document.getElementById('card-container');
      cardContainer.innerHTML = "";
      datas.forEach(data => {
-      //  console.log(data)
+        //console.log(data)
         const {thumbnail_url,title,details,author,rating,_id} = data;
         const {img,name} = author;
         const{number} = rating;
@@ -74,17 +76,18 @@ const modalLoadData = async(id)=>{
 const displayModalLoadData = (data) =>{
     console.log(data)
     const {author,total_view,title} = data;
-    const {img,name} = author; 
+    const {img,name,published_date} = author; 
     const modalBody = document.getElementById('modal-body');
     const modalTitle = document.getElementById('exampleModalLabel');
     modalTitle.setAttribute('class','fw-bold text-center')
     modalTitle.innerText = `${title}`
     modalBody.innerHTML = `
-    <div class="card text-center" style="width: 18rem;">
+    <div class="card " style="width: 18rem;">
   <img src="${img}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Author name: ${name ? name : 'No data available'}</h5>
-    <p>Number of view: ${total_view? total_view : 'No data available'}</p>
+    <p><small class="fw-bold fs-6">Number of view</small>: ${total_view? total_view : 'No data available'}</p>
+    <p><small class="fw-bold fs-6">Published Date:</small> ${published_date}</p>
    
   </div>
 </div>
