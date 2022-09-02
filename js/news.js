@@ -32,8 +32,9 @@ const loadCatagoryDetailsDisplay = (datas) =>{
      cardContainer.innerHTML = "";
      datas.forEach(data => {
         console.log(data)
-        const {thumbnail_url,title,details,author} = data;
+        const {thumbnail_url,title,details,author,rating} = data;
         const {img,name} = author;
+        const{number} = rating;
         const div = document.createElement('div');
       //  div.classList.add("row g-0");
       div.setAttribute("class","row g-0 mt-2 p-2 ")
@@ -46,9 +47,17 @@ const loadCatagoryDetailsDisplay = (datas) =>{
           <h5 class="card-title">${title}</h5>
           <p class="card-text">${details}</p>
           <div class="d-flex justify-content-between">
-          <img src="${img}" class="rounded-circle img" alt="...">
-          <p>${name}</p>
-          </div>
+               <div class="d-flex">
+                  <img src="${img}" class="rounded-circle img" alt="...">
+                  <p class="ms-3">${name}</p>
+               </div>
+               <div>
+                   <p>${number}</p>
+               </div>
+               <div>
+               <button type="button" class="btn btn-info">Details</button>
+               </div>
+            </div>
          </div>
       </div>
      
