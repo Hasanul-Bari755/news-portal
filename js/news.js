@@ -49,7 +49,7 @@ const loadCatagoryDetailsDisplay = (datas) =>{
           <div class="d-flex justify-content-between">
                <div class="d-flex">
                   <img src="${img}" class="rounded-circle img" alt="...">
-                  <p class="ms-3">${name}</p>
+                  <p class="ms-3">${name? name : 'No data available'}</p>
                </div>
                <div>
                    <p class="fw-bold">${number}</p>
@@ -69,6 +69,10 @@ const loadCatagoryDetailsDisplay = (datas) =>{
 const modalLoadData = async(id)=>{
    const response = await fetch(`https://openapi.programming-hero.com/api/news/${id}`);
    const data = await response.json();
-   console.log(data.data[0])
+   displayModalLoadData(data.data[0])
+}
+const displayModalLoadData = (data) =>{
+    console.log(data)
+    const {author} = data;
 }
 loadAllCategory()
