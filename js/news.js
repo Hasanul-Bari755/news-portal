@@ -1,7 +1,13 @@
 const loadAllCategory = async() =>{
+  try{
    const response = await fetch('https://openapi.programming-hero.com/api/news/categories');
    const data = await response.json();
+   
    loadAllCategoryShow(data.data.news_category)
+  }catch(err){
+     console.log(err);
+  }
+   
 }
 
 const loadAllCategoryShow = (datas) =>{
@@ -19,12 +25,20 @@ const loadAllCategoryShow = (datas) =>{
         </div>`;
        showCategory.appendChild(p)
    });
+
 }
 
 const loadCatagoryDetails = async (id) =>{ 
-   const response = await fetch(`https://openapi.programming-hero.com/api/news/category/${id}`);
-   const data  = await response.json();
-   loadCatagoryDetailsDisplay(data.data)
+    try{
+      const response = await fetch(`https://openapi.programming-hero.com/api/news/category/${id}`);
+      const data  = await response.json();
+      loadCatagoryDetailsDisplay(data.data)
+    }catch(err){
+      console.log(err);
+    }
+   spinner(true)
+
+   
 }
 
 const loadCatagoryDetailsDisplay = (datas) =>{
@@ -66,12 +80,18 @@ const loadCatagoryDetailsDisplay = (datas) =>{
         `;
         cardContainer.appendChild(div);
      });
+    
+     
 }
 
 const modalLoadData = async(id)=>{
+  try{
    const response = await fetch(`https://openapi.programming-hero.com/api/news/${id}`);
    const data = await response.json();
    displayModalLoadData(data.data[0])
+  }catch(err){
+   console.log(err)
+  }
 }
 const displayModalLoadData = (data) =>{
     console.log(data)
@@ -95,4 +115,15 @@ const displayModalLoadData = (data) =>{
     `;
 
 }
+
+const spinner = (isValue) =>{
+   const spinnerBody = document.getElementById('spinner');
+   if(isValue === true){
+      spinnerBody.classList.remove('d-none');
+   }
+   else{
+      spinnerBody.classList.add('d-none');
+   }
+}
+
 loadAllCategory()
