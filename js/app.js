@@ -45,7 +45,7 @@ const loadCatagoryDetailsDisplay = (datas) =>{
         const arraySort = datas.sort(function(a,b){
             return b.rating.number - a.rating.number;
         });
-        spinner(true);
+        
       const numderOfNews = document.getElementById('numberOf-news');
       if(arraySort.length >0){
         numderOfNews.innerHTML = `<p class="fw-bold fs-5">Number of news: ${datas.length}</p>`;
@@ -80,7 +80,7 @@ const loadCatagoryDetailsDisplay = (datas) =>{
                   <p class="ms-3">${name? name : 'No data available'}</p>
                </div>
                <div>
-                   <p class="fw-bold"><i class="fa-solid fa-eye me-2"></i>${number}</p>
+                   <p class="fw-bold"><i class="fa-solid fa-eye me-2"></i>${number}M</p>
                </div>
                <div>
                <button onclick="modalLoadData('${_id}')" type="button" class="btn btn-info fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
@@ -93,8 +93,11 @@ const loadCatagoryDetailsDisplay = (datas) =>{
         cardContainer.appendChild(div);
        
      });
-     spinner(false)
+   spinner(false);  
 }
+document.getElementById('show-category').addEventListener('click', () =>{
+  spinner(true);
+})
 
 const modalLoadData = async(id)=>{
   try{
