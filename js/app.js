@@ -7,11 +7,11 @@ const loadAllCategory = async() =>{
   }catch(err){
      console.log(err);
   }
-   spinner(false)
+   
 }
 
 const loadAllCategoryShow = (datas) =>{
-  
+ 
   //console.log(datas)
    const showCategory  = document.getElementById('show-category');
    datas.forEach(data => {
@@ -26,7 +26,7 @@ const loadAllCategoryShow = (datas) =>{
         </div>`;
        showCategory.appendChild(p)
    });
-  
+   
 }
 
 const loadCatagoryDetails = async (id) =>{ 
@@ -37,24 +37,32 @@ const loadCatagoryDetails = async (id) =>{
     }catch(err){
       console.log(err);
     }
-  spinner(true);
+  
 }
 
 const loadCatagoryDetailsDisplay = (datas) =>{
         //array sort
         const arraySort = datas.sort(function(a,b){
             return b.rating.number - a.rating.number;
-        })
-      
+        });
+        spinner(true);
       const numderOfNews = document.getElementById('numberOf-news');
-      numderOfNews.innerHTML = `<p class="fw-bold fs-5">Number of news : ${datas.length}</p>`;
+      if(arraySort.length >0){
+        numderOfNews.innerHTML = `<p class="fw-bold fs-5">Number of news: ${datas.length}</p>`;
+      }
+      else{
+        numderOfNews.innerHTML = `<p class="fw-bold fs-5">News not found</p>`;
+      }
+  
      const cardContainer = document.getElementById('card-container');
      cardContainer.innerHTML = "";
       arraySort.forEach(data => {
-        //console.log(data)
+       // console.log(data)
         const {thumbnail_url,title,details,author,rating,_id} = data;
         const {img,name} = author;
         const{number} = rating;
+       
+
         const div = document.createElement('div');
       //  div.classList.add("row g-0");
       div.setAttribute("class","row g-0 mt-2 p-3 shadow ")
@@ -85,7 +93,7 @@ const loadCatagoryDetailsDisplay = (datas) =>{
         cardContainer.appendChild(div);
        
      });
-    spinner(false);
+     spinner(false)
 }
 
 const modalLoadData = async(id)=>{
@@ -96,7 +104,7 @@ const modalLoadData = async(id)=>{
   }catch(err){
    console.log(err)
   }
-  spinner(false);
+  
 }
 const displayModalLoadData = (data) =>{
     console.log(data)
@@ -118,7 +126,7 @@ const displayModalLoadData = (data) =>{
 </div>
         
     `;
-  spinner(false)
+  
 }
 
 const spinner = (isValue) =>{
