@@ -139,4 +139,4 @@ const spinner = (isValue) =>{
    }
 }
 
-loadAllCategory()
+loadAllCategory();
