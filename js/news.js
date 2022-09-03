@@ -7,7 +7,7 @@ const loadAllCategory = async() =>{
   }catch(err){
      console.log(err);
   }
-   
+   spinner(false)
 }
 
 const loadAllCategoryShow = (datas) =>{
@@ -25,7 +25,7 @@ const loadAllCategoryShow = (datas) =>{
         </div>`;
        showCategory.appendChild(p)
    });
-
+  
 }
 
 const loadCatagoryDetails = async (id) =>{ 
@@ -36,9 +36,7 @@ const loadCatagoryDetails = async (id) =>{
     }catch(err){
       console.log(err);
     }
-   spinner(true)
-
-   
+  spinner(true);
 }
 
 const loadCatagoryDetailsDisplay = (datas) =>{
@@ -80,9 +78,9 @@ const loadCatagoryDetailsDisplay = (datas) =>{
      
         `;
         cardContainer.appendChild(div);
+       
      });
-    
-     
+    spinner(false);
 }
 
 const modalLoadData = async(id)=>{
@@ -93,6 +91,7 @@ const modalLoadData = async(id)=>{
   }catch(err){
    console.log(err)
   }
+  spinner(false);
 }
 const displayModalLoadData = (data) =>{
     console.log(data)
@@ -114,11 +113,11 @@ const displayModalLoadData = (data) =>{
 </div>
         
     `;
-
+  spinner(false)
 }
 
 const spinner = (isValue) =>{
-   const spinnerBody = document.getElementById('spinner');
+   const spinnerBody = document.getElementById('spinnerBody');
    if(isValue === true){
       spinnerBody.classList.remove('d-none');
    }
