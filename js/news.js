@@ -11,7 +11,8 @@ const loadAllCategory = async() =>{
 }
 
 const loadAllCategoryShow = (datas) =>{
-   //console.log(datas)
+  
+  //console.log(datas)
    const showCategory  = document.getElementById('show-category');
    datas.forEach(data => {
        //console.log(data)
@@ -40,12 +41,16 @@ const loadCatagoryDetails = async (id) =>{
 }
 
 const loadCatagoryDetailsDisplay = (datas) =>{
+        //array sort
+        const arraySort = datas.sort(function(a,b){
+            return b.rating.number - a.rating.number;
+        })
       
       const numderOfNews = document.getElementById('numberOf-news');
       numderOfNews.innerHTML = `<p class="fw-bold fs-5">Number of news : ${datas.length}</p>`;
      const cardContainer = document.getElementById('card-container');
      cardContainer.innerHTML = "";
-      datas.forEach(data => {
+      arraySort.forEach(data => {
         //console.log(data)
         const {thumbnail_url,title,details,author,rating,_id} = data;
         const {img,name} = author;
